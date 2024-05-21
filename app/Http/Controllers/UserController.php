@@ -23,9 +23,8 @@ class UserController extends Controller
 
     public function index()
     {
-//        $notifications = Auth::user()->unreadNotifications;
         $users = $this->user->latest()->paginate(5);
-        return view('admin.user.index', compact('users', 'notifications'));
+        return view('admin.user.index', compact('users'));
     }
 
     public function create()
