@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Category extends Model
 {
     use HasFactory, Sluggable, SoftDeletes;
+
+    protected $table = 'categories';
     protected $fillable = [
         'name',
         'parent_id',

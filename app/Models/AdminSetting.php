@@ -10,6 +10,7 @@ class AdminSetting extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $table = 'admin_settings';
     protected $fillable = [
         'config_key',
         'config_value',

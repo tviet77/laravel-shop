@@ -9,6 +9,7 @@ class ProductTag extends Model
 {
     use SoftDeletes;
 
+    protected $table = 'product_tags';
     protected $fillable = [
         'product_id',
         'tag_id',

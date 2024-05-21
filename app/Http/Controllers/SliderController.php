@@ -20,7 +20,7 @@ class SliderController extends Controller
 
     public function index()
     {
-        $sliders = $this->slider->latest()->paginate(5);
+        $sliders = $this->slider->latest()->paginate(8);
         return view('admin.slider.index', compact('sliders'));
     }
 

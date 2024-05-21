@@ -6,6 +6,7 @@ use App\Http\Requests\UserCreateRequest;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -22,8 +23,9 @@ class UserController extends Controller
 
     public function index()
     {
+//        $notifications = Auth::user()->unreadNotifications;
         $users = $this->user->latest()->paginate(5);
-        return view('admin.user.index', compact('users'));
+        return view('admin.user.index', compact('users', 'notifications'));
     }
 
     public function create()
@@ -73,7 +75,6 @@ class UserController extends Controller
             ];
 
             $user->update($userData);
-            dd($user);
             $user->roles()->attach($request->role_id); // Sync roles
             DB::commit();
             return redirect()->route('users.index');

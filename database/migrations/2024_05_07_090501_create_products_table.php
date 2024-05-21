@@ -16,6 +16,8 @@ return new class extends Migration {
             $table->text('content');
             $table->integer('user_id');
             $table->integer('category_id');
+            $table->boolean('is_featured')->default(0);
+            $table->string('slug')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
