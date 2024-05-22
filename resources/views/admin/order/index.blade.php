@@ -3,7 +3,56 @@
 @section('title')
     <title>Quản lý đơn hàng</title>
 @endsection
+@section('js')
+    <script src="{{asset('vendor/laravel-filemanager/js/sweetalert2@11.js')}}"></script>
+    <script>
+        function actionDelete(event) {
+            event.preventDefault();
+            let urlRequest = $(this).data('url');
+            let that = $(this);
+            Swal.fire({
+                title: "Bạn có chắc muốn xoá item này?",
+                text: "Dữ liệu sẽ không thể khôi phục nếu xoá!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Xoá"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: "GET",
+                        url: urlRequest,
+                        success: function (data) {
+                            if(data.code == 200){
+                                that.parent().parent().remove();
+                                Swal.fire({
+                                    title: "Đã xoá!",
+                                    text: "Item đã được xoá.",
+                                    icon: "success"
+                                });
+                            } else {
+                                Swal.fire({
+                                    title: "Error!",
+                                    text: data.message,
+                                    icon: "error"
+                                })
+                            }
+                        },
+                        error: function (data) {
 
+                        }
+                    });
+
+                }
+            });
+        }
+        $(function(){
+            $(document).on('click', '.btn-action-delete', actionDelete)
+        })
+
+    </script>
+@endsection
 @section('content')
     <div class="content-wrapper">
         @include('partials.content-header', ['name' => 'Đơn hàng', 'key' => 'Quản lý'])
@@ -42,7 +91,7 @@
                                             <td>{!! $order->status === 0 ? '<span class="badge bg-danger">Chưa xác nhận</span>' : '<span class="badge bg-success">Đã xác nhận</span>' !!}</td>
 
                                             <td>
-                                                <a href="#" class="btn btn-danger">Xoá</a>
+                                                <a href="#" class="btn btn-danger btn-action-delete" data-url="{{route('order.delete', ['id' => $order->id])}}"">Xoá</a>
                                             </td>
                                         </tr>
                                     @endforeach

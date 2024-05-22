@@ -120,6 +120,7 @@ Route::prefix('admin')->group(function () {
         Route::prefix('order')->group(function () {
             Route::get('/', [OrderController::class, 'index'])->name('order.index');
             Route::get('/detail-order/{id}', [OrderController::class, 'detailOrder'])->name('order.detail');
+            Route::get('/delete/{id}', [OrderController::class, 'delete'])->name('order.delete');
         });
     });
 });
