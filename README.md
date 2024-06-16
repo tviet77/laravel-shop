@@ -1,9 +1,5 @@
 # Laravel Shop
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/vietcoderx/laravel-shop.svg?style=flat-square)](https://packagist.org/packages/vietcoderx/laravel-shop)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/vietcoderx/laravel-shop/run-tests?label=tests)](https://github.com/vietcoderx/laravel-shop/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/vietcoderx/laravel-shop.svg?style=flat-square)](https://packagist.org/packages/vietcoderx/laravel-shop)
-
 ## Features
 
 * **Product Management:** Add, edit, and delete products, including images, descriptions, and prices.
@@ -54,14 +50,22 @@ php artisan serve
 	Email: admin@gmail.com
 	Password: admin  
 2. Role:
+```sh
 name : admin,
 displaname : Admin
+```
 --
+```sh
 name : guest,
 displaname : Khách hàng
+```
 --
+```sh
 name : dev, 
 displaname : Phát triển hệ thống
+```
 --
+```sh
 name : content, 
 displaname : Chỉnh sửa nội dung
+```
